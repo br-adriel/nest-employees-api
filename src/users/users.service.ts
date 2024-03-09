@@ -38,7 +38,13 @@ export class UsersService {
   ];
 
   getAllUsers(role?: 'INTERN' | 'ENGINEER' | 'ADMIN') {
-    if (role) return this.users.filter((user) => user.role === role);
+    const roles = ['INTERN', 'ENGINEER', 'ADMIN'];
+    if (role) {
+      if (!roles.includes(role)) {
+        throw new NotFoundException('"role" não encontrado');
+      }
+      return this.users.filter((user) => user.role === role);
+    }
     return this.users;
   }
 
