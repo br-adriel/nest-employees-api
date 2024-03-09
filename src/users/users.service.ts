@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import Role from 'src/types/Role';
-import User from 'src/types/User';
+import User, { UserOptionalProps } from 'src/types/User';
 
 @Injectable()
 export class UsersService {
@@ -55,5 +55,18 @@ export class UsersService {
     };
     this.users.push(newUser);
     return newUser;
+  }
+
+  update(id: number, updatedUser: UserOptionalProps) {
+    this.users = this.users.map((user) => {
+      if (user.id == id) {
+        return {
+          ...user,
+          ...updatedUser,
+        };
+      }
+      return user;
+    });
+    return this.getUser(id);
   }
 }
