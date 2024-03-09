@@ -39,4 +39,9 @@ export class UsersService {
     if (role) return this.users.filter((user) => user.role === role);
     return this.users;
   }
+
+  getUser(id: number) {
+    const user = this.users.find((user) => user.id == id);
+    return user;
+  }
 }
