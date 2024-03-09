@@ -1,4 +1,6 @@
 import { Injectable } from '@nestjs/common';
+import Role from 'src/types/Role';
+import User from 'src/types/User';
 
 @Injectable()
 export class UsersService {
@@ -35,7 +37,7 @@ export class UsersService {
     },
   ];
 
-  getAllUsers(role?: 'INTERN' | 'ENGINEER' | 'ADMIN') {
+  getAllUsers(role?: Role) {
     if (role) return this.users.filter((user) => user.role === role);
     return this.users;
   }
@@ -45,11 +47,7 @@ export class UsersService {
     return user;
   }
 
-  create(user: {
-    name: string;
-    email: string;
-    role: 'INTERN' | 'ENGINEER' | 'ADMIN';
-  }) {
+  create(user: User) {
     const usersByHighestId = [...this.users].sort((a, b) => b.id - a.id);
     const newUser = {
       id: usersByHighestId[0].id + 1,
