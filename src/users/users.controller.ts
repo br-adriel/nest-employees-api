@@ -9,6 +9,7 @@ import {
   Query,
 } from '@nestjs/common';
 import { UsersService } from './users.service';
+import User from 'src/types/User';
 
 @Controller('users')
 export class UsersController {
@@ -25,8 +26,8 @@ export class UsersController {
   }
 
   @Post()
-  create(@Body() user: {}) {
-    return user;
+  create(@Body() user: User) {
+    return this.usersService.create(user);
   }
 
   @Patch(':id')
