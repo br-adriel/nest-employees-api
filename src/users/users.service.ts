@@ -69,4 +69,10 @@ export class UsersService {
     });
     return this.getUser(id);
   }
+
+  delete(id: number) {
+    const removedUser = this.getUser(id);
+    this.users = this.users.filter((user) => user.id !== id);
+    return removedUser;
+  }
 }
