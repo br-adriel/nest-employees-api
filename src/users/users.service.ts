@@ -1,5 +1,4 @@
 import { Injectable } from '@nestjs/common';
-import Role from 'src/types/Role';
 import { CreateUserDTO } from './dto/create-user.dto';
 import { UpdateUserDTO } from './dto/update-user.dto';
 
@@ -38,7 +37,7 @@ export class UsersService {
     },
   ];
 
-  getAllUsers(role?: Role) {
+  getAllUsers(role?: 'INTERN' | 'ENGINEER' | 'ADMIN') {
     if (role) return this.users.filter((user) => user.role === role);
     return this.users;
   }
