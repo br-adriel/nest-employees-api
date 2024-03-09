@@ -10,7 +10,7 @@ export interface UserWithId extends User {
   id: number;
 }
 
-export interface UserOptionalProps {
+export interface UserWithOptionalProps {
   id?: number;
   name?: string;
   email?: string;

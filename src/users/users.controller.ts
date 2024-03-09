@@ -9,7 +9,7 @@ import {
   Query,
 } from '@nestjs/common';
 import { UsersService } from './users.service';
-import User, { UserOptionalProps } from 'src/types/User';
+import User, { UserWithOptionalProps } from 'src/types/User';
 
 @Controller('users')
 export class UsersController {
@@ -31,7 +31,7 @@ export class UsersController {
   }
 
   @Patch(':id')
-  update(@Param('id') id: string, @Body() user: UserOptionalProps) {
+  update(@Param('id') id: string, @Body() user: UserWithOptionalProps) {
     return this.usersService.update(+id, user);
   }
 
