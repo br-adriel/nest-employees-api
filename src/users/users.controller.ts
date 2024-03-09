@@ -9,8 +9,9 @@ import {
   Post,
   Query,
 } from '@nestjs/common';
+import { CreateUserDTO } from './dto/create-user.dto';
+import { UpdateUserDTO } from './dto/update-user.dto';
 import { UsersService } from './users.service';
-import User, { UserWithOptionalProps } from 'src/types/User';
 
 @Controller('users')
 export class UsersController {
@@ -27,16 +28,16 @@ export class UsersController {
   }
 
   @Post()
-  create(@Body() user: User) {
-    return this.usersService.create(user);
+  create(@Body() createUserDTO: CreateUserDTO) {
+    return this.usersService.create(createUserDTO);
   }
 
   @Patch(':id')
   update(
     @Param('id', ParseIntPipe) id: number,
-    @Body() user: UserWithOptionalProps,
+    @Body() updateUserDTO: UpdateUserDTO,
   ) {
-    return this.usersService.update(id, user);
+    return this.usersService.update(id, updateUserDTO);
   }
 
   @Delete(':id')
