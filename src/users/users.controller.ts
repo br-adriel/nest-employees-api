@@ -8,12 +8,15 @@ import {
   Post,
   Query,
 } from '@nestjs/common';
+import { UsersService } from './users.service';
 
 @Controller('users')
 export class UsersController {
+  constructor(private readonly usersService: UsersService) {}
+
   @Get()
   getAllUsers(@Query('role') role: 'INTERN' | 'ENGINEER' | 'ADMIN') {
-    return [];
+    return this.usersService.getAllUsers(role);
   }
 
   @Get(':id')
