@@ -11,7 +11,38 @@ API construida durante o acompanhamento do
 
 ## Executando o projeto
 
-🏗 Em construção...
+Para executar esse projeto é preciso ter o [Node.js](https://nodejs.org/en) e o
+[Docker](https://docs.docker.com/get-docker/) instalados em sua máquina.
+
+1. Abra a pasta do projeto e instale as dependências do projeto
+
+    ```bash
+    npm i
+    ```
+
+2. Faça a cópia do arquivo de exemplo com as variáveis de ambiente
+
+    ```bash
+    cp .env.example .env
+    ```
+
+3. Inicie o banco de dados da aplicação com o docker compose
+
+    ```bash
+    docker compose up
+    ```
+
+4. Aplique as migrações do banco de dados
+
+    ```bash
+    npx prisma migrate dev
+    ```
+
+5. Inicie o servidor local
+
+    ```bash
+    npm run start:dev
+    ```
 
 ## Endpoints
 
