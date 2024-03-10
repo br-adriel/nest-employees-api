@@ -22,7 +22,11 @@ export class EmployeesService {
   }
 
   async findOne(id: number) {
-    return `This action returns a #${id} employee`;
+    return this.databaseService.employee.findUnique({
+      where: {
+        id,
+      },
+    });
   }
 
   async update(id: number, updateEmployeeDto: Prisma.EmployeeUpdateInput) {
