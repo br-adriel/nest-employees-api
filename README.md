@@ -1,73 +1,108 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="200" alt="Nest Logo" /></a>
-</p>
+# Employees API
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+API construida durante o acompanhamento do
+[vídeo Nest.js Full Course for Beginners](https://www.youtube.com/watch?v=8_X0nSrzrCw).
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://coveralls.io/github/nestjs/nest?branch=master" target="_blank"><img src="https://coveralls.io/repos/github/nestjs/nest/badge.svg?branch=master#9" alt="Coverage" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+![NodeJS](https://img.shields.io/badge/node.js-6DA55F?style=for-the-badge&logo=node.js&logoColor=white)
+![NestJS](https://img.shields.io/badge/nestjs-%23E0234E.svg?style=for-the-badge&logo=nestjs&logoColor=white)
+![Prisma](https://img.shields.io/badge/Prisma-3982CE?style=for-the-badge&logo=Prisma&logoColor=white)
+![Docker](https://img.shields.io/badge/docker-%230db7ed.svg?style=for-the-badge&logo=docker&logoColor=white)
+![Postgres](https://img.shields.io/badge/postgres-%23316192.svg?style=for-the-badge&logo=postgresql&logoColor=white)
 
-## Description
+## Executando o projeto
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+🏗 Em construção...
 
-## Installation
+## Endpoints
 
-```bash
-$ npm install
+A api inclui _endpoints_ para usuários (`/api/users`) e empregados
+(`/api/employees`).
+
+Ambos os recursos possuem os mesmos campos, a única diferença sendo que enquanto
+os dados de usuários estão codificados diretamente no service na forma de
+_array_, os dados de empregados são persistidos em um banco de dados postgres.
+
+### `/api/users`
+
+Endpoints referentes a entidade de usuário. Mudanças não são persistidas com o
+fim da execução do programa.
+
+Requisições que requerem o envio de um corpo, esperam que ele esteja nesse
+formato:
+
+```json
+{
+  "name": "nome do usuário",
+  "email": "email do usuário",
+  "role": "INTERN, ENGINEER ou ADMIN"
+}
 ```
 
-## Running the app
+- `GET` `/`
 
-```bash
-# development
-$ npm run start
+    Retorna um array com todos os usuários cadastrados.
 
-# watch mode
-$ npm run start:dev
+- `GET` `/{id}`
 
-# production mode
-$ npm run start:prod
+    Retorna o objeto do usuário ao qual o `id` se refere.
+
+- `POST` `/`
+
+    Cadastra um novo usuário. O corpo da requição deve conter os dados confome
+    modelo apresentado no início da seção. Retorna o objeto referente ao usuário
+    cadastrado.
+
+- `PATCH` `/{id}`
+
+    Atualiza os dados do usuário ao qual o `id` se refere. O corpo da requição
+    deve conter os dados confome modelo apresentado no início da seção. Apenas
+    os dados que o usuário deseja modificar precisam ser passados, não é
+    necessário enviar todos os campos. O objeto referente ao usuário atualizado
+    é retornado.
+
+- `DELETE` `/{id}`
+
+    Apaga o usuário ao qual o `id` se refere. O objeto referente ao usuário
+    apagado é retornado.
+
+### `/api/employees`
+
+Endpoints referentes a entidade de empregados. Mudanças são persistidas com o
+fim da execução do programa em um banco de dados postgres.
+
+ Requisições que requerem o envio de um corpo, esperam que ele esteja nesse
+formato:
+
+```json
+{
+  "name": "nome do empregado",
+  "email": "email do empregado",
+  "role": "INTERN, ENGINEER ou ADMIN"
+}
 ```
 
-## Test
+- `GET` `/`
 
-```bash
-# unit tests
-$ npm run test
+    Retorna um array com todos os empregados cadastrados.
 
-# e2e tests
-$ npm run test:e2e
+- `GET` `/{id}`
 
-# test coverage
-$ npm run test:cov
-```
+    Retorna o objeto do empregado ao qual o `id` se refere.
 
-## Support
+- `POST` `/`
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
+    Cadastra um novo empregado. O corpo da requição deve conter os dados confome
+modelo apresentado no início da seção. Retorna o objeto referente ao empregado cadastrado.
 
-## Stay in touch
+- `PATCH` `/{id}`
 
-- Author - [Kamil Myśliwiec](https://kamilmysliwiec.com)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
+    Atualiza os dados do empregado ao qual o `id` se refere. O corpo da requição
+deve conter os dados confome modelo apresentado no início da seção.
+Apenas os dados que o usuário deseja modificar precisam ser passados, não é
+necessário enviar todos os campos. O objeto referente ao empregado atualizado é
+retornado.
 
-## License
+- `DELETE` `/{id}`
 
-Nest is [MIT licensed](LICENSE).
+    Apaga o empregado ao qual o `id` se refere. O objeto referente ao empregado
+apagado é retornado.
