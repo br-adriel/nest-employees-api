@@ -30,7 +30,12 @@ export class EmployeesService {
   }
 
   async update(id: number, updateEmployeeDto: Prisma.EmployeeUpdateInput) {
-    return `This action updates a #${id} employee`;
+    return this.databaseService.employee.update({
+      where: {
+        id,
+      },
+      data: updateEmployeeDto,
+    });
   }
 
   async remove(id: number) {
