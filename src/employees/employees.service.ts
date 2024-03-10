@@ -39,6 +39,6 @@ export class EmployeesService {
   }
 
   async remove(id: number) {
-    return `This action removes a #${id} employee`;
+    return this.databaseService.employee.delete({ where: { id } });
   }
 }
