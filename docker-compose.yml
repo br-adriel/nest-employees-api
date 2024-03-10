@@ -1,0 +1,16 @@
+version: '3.8'
+
+services:
+  database:
+    image: postgres:alpine
+    ports:
+      - 5432:5432
+    environment:
+      - POSTGRES_USER=docker
+      - POSTGRES_PASSWORD=docker1234
+      - POSTGRES_DB=nest_api
+    volumes:
+      - pg_database:/var/lib/postgresql/data
+
+volumes:
+  pg_database:
